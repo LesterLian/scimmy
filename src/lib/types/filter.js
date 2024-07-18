@@ -296,7 +296,7 @@ export class Filter extends Array {
                         let [comparator, expected] = expression.slice(((+negate) - expression.length));
                         
                         // Cast true and false strings to boolean values
-                        expected = (expected === "false" ? false : (expected === "true" ? true : expected));
+                        expected = (expected === "false" ? false : (expected === "true" ? true : (expected === null ? undefined : expected)));
                         
                         switch (comparator.toLowerCase()) {
                             default:
