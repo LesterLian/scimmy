@@ -349,7 +349,10 @@ export class PatchOp {
                                 // Get rid of any empty values from the filter
                                 .filter(([, value]) => value !== undefined)
                                 // Turn it into an equity filter string
-                                .map(([key, value]) => (`${key} eq ${value}`)).join(" and "))
+                                .map(([key, value]) => {
+                                    value = typeof value === "string" ? `"${value}"` : value;
+                                    return `${key} eq ${value}`}
+                                ).join(" and "))
                                 .join(" or ")
                             )
                             // Get any matching values from the filter
